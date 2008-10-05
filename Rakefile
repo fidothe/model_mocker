@@ -34,12 +34,12 @@ namespace :doc do
   
   task :build => 'doc/README.html'
   
-  task 'doc/README.html' => 'README' do 
+  task 'doc/README.html' => 'README.markdown' do 
     require 'rdiscount'
     require 'builder'
     require 'hpricot'
     # process with markdown gem
-    html_fragment = RDiscount.new(File.read('README')).to_html
+    html_fragment = RDiscount.new(File.read('README.markdown')).to_html
     # wrap in html body
     html_doc_string = make_html_doc(html_fragment)
     # make first H1 into title
