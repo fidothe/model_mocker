@@ -140,15 +140,21 @@ those in isolation, without worrying about database reads and writes.
         </div>
       
         <div class="method-description">
+          <p>
+<a href="ModelMocker.html#M000001">ModelMocker.new</a> is called with the
+AR::Base subclass a mock object is for, with any creation params in
+stub_params. Methods on the <a href="ModelMocker.html">ModelMocker</a>
+instance determine how the mock AR::Base subclass object will behave
+</p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000001-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 29</span>
-29:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">stub_params</span>)
-30:     <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
-31:     <span class="ruby-ivar">@stub_params</span> = <span class="ruby-identifier">stub_params</span>
-32:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 34</span>
+34:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">stub_params</span>)
+35:     <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
+36:     <span class="ruby-ivar">@stub_params</span> = <span class="ruby-identifier">stub_params</span>
+37:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -174,10 +180,10 @@ href="ModelMocker.html#M000001">new</a> record
             onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000002-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">as_new_record</span>
-46:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:new_record?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
-47:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">as_new_record</span>
+51:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:new_record?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
+52:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -200,10 +206,10 @@ The model instance will return true if <tt>destroy</tt> is called
             onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000006-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_be_destroyed</span>
-72:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:destroy</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
-73:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_be_destroyed</span>
+77:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:destroy</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
+78:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -226,10 +232,10 @@ The model instance will return false if <tt>destroy</tt> is called
             onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000007-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 76</span>
-76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cannot_be_destroyed</span>
-77:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:destroy</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
-78:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cannot_be_destroyed</span>
+82:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:destroy</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
+83:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -253,10 +259,10 @@ always return false
             onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000005-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 66</span>
-66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cannot_be_updated</span>
-67:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:update_attributes</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
-68:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cannot_be_updated</span>
+72:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:update_attributes</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
+73:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -281,12 +287,12 @@ false, and <tt>save!</tt> will raise <tt>ActiveRecord::RecordNotSaved</tt>
             onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000004-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 59</span>
-59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invalid</span>
-60:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:valid?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
-61:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
-62:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save!</span>).<span class="ruby-identifier">raises</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotSaved</span>)
-63:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invalid</span>
+65:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:valid?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
+66:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">false</span>)
+67:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save!</span>).<span class="ruby-identifier">raises</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotSaved</span>)
+68:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -311,12 +317,12 @@ href="ModelMocker.html#M000003">valid</a>, and <tt>save</tt> and
             onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000003-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 51</span>
-51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid</span>
-52:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:valid?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
-53:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
-54:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save!</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
-55:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/model_mocker.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid</span>
+57:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:valid?</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
+58:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
+59:     <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">stubs</span>(<span class="ruby-identifier">:save!</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-keyword kw">true</span>)
+60:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

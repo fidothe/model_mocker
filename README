@@ -1,14 +1,22 @@
-ModelMocker
-===========
+= ModelMocker
 
 This plugin gives you an easy way of generating partially mocked ActiveRecord model objects. This is a useful way of simulating some aspects of a model (like the persistence layer) but leaving the domain logic parts intact, so that you test those in isolation, without worry about database reads and writes.
 
 It's similar to RSpec's mock_model method, but gives you a slightly more declarative way of going about things. I found myself wanting something along these lines a long time ago, and created something very simple that I've used in several projects. More recently I've found myself wanting to easily control certain kinds of behaviour in controller specs, like wanting to ensure that a model instance is valid to allow easy and declarative speccing of the controller.
 
-The plugin adds a `mock` method to `ActiveRecord::Base` when `mock_models` is required, which behaves a lot like `AR::Base.new` or `AR::Base.create`, except that you can specify an ID too. Special behaviour is added by passing a block to `mock` and calling methods on the object it yields.
+The plugin adds a <tt>mock</tt> method to <tt>ActiveRecord::Base</tt> when <tt>mock_models</tt> is required, which behaves a lot like <tt>AR::Base.new</tt> or <tt>AR::Base.create</tt>, except that you can specify an ID too. Special behaviour is added by passing a block to <tt>mock</tt> and calling methods on the object it yields.
 
-Examples
---------
+== Installation
+
+    ./script/plugin install git://github.com/fidothe/model_mocker.git
+    
+Then stick <tt>require 'model_mocker'</tt> into <tt>spec_helper.rb</tt> or somewhere similar...
+
+== Requirements
+
+ModelMocker uses the Mocha[http://mocha.rubyforge.org/] Gem.
+
+== Examples
 
 To create a mocked model instance which behaves as it's been fetched from the DB:
 
@@ -25,8 +33,6 @@ One which is new and will always report that is invalid, whether or not ActiveRe
       m.invalid
     end
 
-The [RDoc][] for the instance methods on ModelMocker gives a complete rundown of what's possible.
-
-[RDoc]: ./rdoc/
+The RDoc for the instance methods on ModelMocker gives a complete rundown of what's possible.
 
 Copyright (c) 2008 Matt Patterson, released under the MIT license

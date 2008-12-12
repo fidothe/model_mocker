@@ -2,6 +2,8 @@ require 'active_record/base'
 require 'mocha'
 
 class ActiveRecord::Base
+  # Create a new instance of the class, pass in creation params and then 
+  # yield the ModelMocker instance so that methods can be called on it
   def self.mock(params = {})
     mock_model = ModelMocker.new(self, params)
     yield(mock_model) if block_given?
@@ -26,6 +28,9 @@ class ModelMocker
     end
   end
   
+  # ModelMocker.new is called with the AR::Base subclass a mock object is for,
+  # with any creation params in stub_params. Methods on the ModelMocker instance 
+  # determine how the mock AR::Base subclass object will behave
   def initialize(klass, stub_params)
     @klass = klass
     @stub_params = stub_params

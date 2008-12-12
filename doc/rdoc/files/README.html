@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 12 19:22:26 +0000 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/ModelMocker.html">ModelMocker</a></h1>
+<p>
+This plugin gives you an easy way of generating partially mocked <a
+href="../classes/ActiveRecord.html">ActiveRecord</a> model objects. This is
+a useful way of simulating some aspects of a model (like the persistence
+layer) but leaving the domain logic parts intact, so that you test those in
+isolation, without worry about database reads and writes.
+</p>
+<p>
+It&#8216;s similar to RSpec&#8216;s mock_model method, but gives you a
+slightly more declarative way of going about things. I found myself wanting
+something along these lines a long time ago, and created something very
+simple that I&#8216;ve used in several projects. More recently I&#8216;ve
+found myself wanting to easily control certain kinds of behaviour in
+controller specs, like wanting to ensure that a model instance is valid to
+allow easy and declarative speccing of the controller.
+</p>
+<p>
+The plugin adds a <tt>mock</tt> method to <tt><a
+href="../classes/ActiveRecord/Base.html">ActiveRecord::Base</a></tt> when
+<tt>mock_models</tt> is required, which behaves a lot like
+<tt>AR::Base.new</tt> or <tt>AR::Base.create</tt>, except that you can
+specify an ID too. Special behaviour is added by passing a block to
+<tt>mock</tt> and calling methods on the object it yields.
+</p>
+<h2>Installation</h2>
+<pre>
+    ./script/plugin install git://github.com/fidothe/model_mocker.git
+</pre>
+<p>
+Then stick <tt>require &#8216;model_mocker&#8216;</tt> into
+<tt>spec_helper.rb</tt> or somewhere similar&#8230;
+</p>
+<h2>Requirements</h2>
+<p>
+<a href="../classes/ModelMocker.html">ModelMocker</a> uses the <a
+href="http://mocha.rubyforge.org/">Mocha</a> Gem.
+</p>
+<h2>Examples</h2>
+<p>
+To create a mocked model instance which behaves as it&#8216;s been fetched
+from the DB:
+</p>
+<pre>
+    ModelClass.mock(:id =&gt; 1)
+</pre>
+<p>
+To create one which behaves as if it&#8216;s a new record
+</p>
+<pre>
+    ModelClass.mock { |m| m.as_new_record }
+</pre>
+<p>
+One which is new and will always report that is invalid, whether or not <a
+href="../classes/ActiveRecord.html">ActiveRecord</a> validations have been
+met or not.
+</p>
+<pre>
+    ModelClass.mock do |m|
+      m.as_new_record
+      m.invalid
+    end
+</pre>
+<p>
+The RDoc for the instance methods on <a
+href="../classes/ModelMocker.html">ModelMocker</a> gives a complete rundown
+of what&#8216;s possible.
+</p>
+<p>
+Copyright (c) 2008 Matt Patterson, released under the MIT license
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
