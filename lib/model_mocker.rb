@@ -31,14 +31,14 @@ class ModelMocker
   # ModelMocker.new is called with the AR::Base subclass a mock object is for,
   # with any creation params in stub_params. Methods on the ModelMocker instance 
   # determine how the mock AR::Base subclass object will behave
-  def initialize(klass, stub_params)
+  def initialize(klass, stub_params = {})
     @klass = klass
     @stub_params = stub_params
   end
   
   def instance # :nodoc:
     return @instance unless @instance.nil?
-    id = @stub_params.delete(:id)
+    id = @stub_params[:id]
     @instance = @klass.new(attributes)
     @instance.stubs(:id).returns(id)
     stub_instance_methods!
@@ -89,11 +89,11 @@ class ModelMocker
   end
   
   def attributes # :nodoc:
-    Hash[*(@stub_params.select { |attr_name, value| valid_columns.include?(attr_name) }.flatten)]
+    Hash[*(@stub_params.select { |attr_name, value| valid_columns.include?(attr_name.to_s) }.flatten)].reject {|k, v| k.to_s == 'id'}
   end
   
   def method_stubs # :nodoc:
-    @stub_params.reject { |attr_name, value| valid_columns.include?(attr_name) }
+    Hash[*(@stub_params.reject { |attr_name, value| valid_columns.include?(attr_name.to_s) }.collect { |k, v| [k.to_sym, v] }).flatten]
   end
   
   def stub_instance_methods! # :nodoc:
