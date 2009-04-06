@@ -39,7 +39,10 @@ class ModelMocker
   def instance # :nodoc:
     return @instance unless @instance.nil?
     id = @stub_params[:id]
-    @instance = @klass.new(attributes)
+    @instance = @klass.new
+    attributes.each do |k, v|
+      @instance.write_attribute(k, v)
+    end
     @instance.stubs(:id).returns(id)
     stub_instance_methods!
     @instance.extend(ModelMocker::Helpers)
