@@ -41,7 +41,7 @@ class ModelMocker
     id = @stub_params[:id]
     @instance = @klass.new
     attributes.each do |k, v|
-      @instance.write_attribute(k, v)
+      @instance.send(:write_attribute, k, v)
     end
     @instance.stubs(:id).returns(id)
     stub_instance_methods!
