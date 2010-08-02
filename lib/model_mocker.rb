@@ -1,15 +1,14 @@
-require 'active_record/base'
 require 'mocha'
 
-class ActiveRecord::Base
-  # Create a new instance of the class, pass in creation params and then 
-  # yield the ModelMocker instance so that methods can be called on it
-  def self.mock(params = {})
-    mock_model = ModelMocker.new(self, params)
-    yield(mock_model) if block_given?
-    mock_model.instance
-  end
-end
+# class ActiveRecord::Base
+#   # Create a new instance of the class, pass in creation params and then 
+#   # yield the ModelMocker instance so that methods can be called on it
+#   def self.mock(params = {})
+#     mock_model = ModelMocker.new(self, params)
+#     yield(mock_model) if block_given?
+#     mock_model.instance
+#   end
+# end
 
 # An easy way of generating partially mocked <tt>ActiveRecord</tt> model objects. 
 # This is a useful way of simulating some aspects of a model (like the 
@@ -25,6 +24,16 @@ class ModelMocker
     
     def new_record?
       id.nil?
+    end
+  end
+  
+  module ActiveRecordHook
+    # Create a new instance of the class, pass in creation params and then 
+    # yield the ModelMocker instance so that methods can be called on it
+    def self.mock(params = {})
+      mock_model = ModelMocker.new(self, params)
+      yield(mock_model) if block_given?
+      mock_model.instance
     end
   end
   
@@ -104,4 +113,8 @@ class ModelMocker
       instance.stubs(meth).returns(value)
     end
   end
+end
+
+if defined?(Rails::Railtie)
+  require 'model_mocker/railtie' 
 end

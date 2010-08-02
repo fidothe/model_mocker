@@ -1,6 +1,7 @@
 Change Log
 ==========
 
+2010-08-02 - Added .gemspec, Rails 2 init hooks, and Rails 3 Railtie
 2010-06-10 - Switched to @instance.send(:write_attribute, ...) instead of @instance.write_attribute(...) for AR 3 compatibility
 2008-12-11 - Tweaked the RDoc and stopped using Markdown for the README
 2008-10-05 - Initial release, docs not really up to scratch yet

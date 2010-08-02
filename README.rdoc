@@ -8,9 +8,9 @@ The plugin adds a <tt>mock</tt> method to <tt>ActiveRecord::Base</tt> when <tt>m
 
 == Installation
 
-    ./script/plugin install git://github.com/fidothe/model_mocker.git
-    
-Then stick <tt>require 'model_mocker'</tt> into <tt>spec_helper.rb</tt> or somewhere similar...
+For Rails 2, add <tt>model_mocker</tt> to your <tt>config.gem</tt> for the test evironment.
+
+For Rails 3, add <tt>model_mocker</tt> to your +Gemfile+ in the <tt>:test</tt> group.
 
 == Requirements
 
