@@ -30,7 +30,7 @@ class ModelMocker
   module ActiveRecordHook
     # Create a new instance of the class, pass in creation params and then 
     # yield the ModelMocker instance so that methods can be called on it
-    def self.mock(params = {})
+    def mock(params = {})
       mock_model = ModelMocker.new(self, params)
       yield(mock_model) if block_given?
       mock_model.instance
