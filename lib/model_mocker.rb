@@ -25,6 +25,10 @@ class ModelMocker
     def new_record?
       id.nil?
     end
+    
+    def persisted?
+      !new_record?
+    end
   end
   
   module ActiveRecordHook
@@ -58,7 +62,7 @@ class ModelMocker
     @instance
   end
   
-  # The model instance will report that it's a new record
+  # The model instance will always report that it's a new record
   def as_new_record
     instance.stubs(:new_record?).returns(true)
   end
